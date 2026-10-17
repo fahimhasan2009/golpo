@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6d28d9"><title>অ্যাডমিন প্যানেল — গল্পকথা</title><link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+  <header class="topbar admin-top"><a class="brand" href="index.html"><span class="brand-mark">গ</span><span>গল্প<span class="brand-light">কথা</span><small>অ্যাডমিন স্টুডিও</small></span></a><a class="admin-link" href="index.html">← ওয়েবসাইটে ফিরুন</a></header>
+  <main class="admin-shell">
+    <section id="loginPanel" class="login-card">
+      <div class="login-symbol">🔐</div><span class="eyebrow">PRIVATE AREA</span><h1>অ্যাডমিন লগইন</h1><p>গল্প প্রকাশ ও ওয়েবসাইট পরিচালনা করতে পাসওয়ার্ড দিন।</p>
+      <form id="loginForm"><label for="adminPassword">পাসওয়ার্ড</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="অ্যাডমিন পাসওয়ার্ড" required><button class="primary-button" type="submit">লগইন করুন <span>→</span></button><p id="loginError" class="error" role="alert"></p></form>
+      <small class="security-note">নোট: এই ডেমো সংস্করণে লগইনটি ব্রাউজার-ভিত্তিক; পাবলিক ওয়েবসাইটে নিরাপদ রাখতে সার্ভার-সাইড লগইন দরকার।</small>
+    </section>
+    <section id="dashboard" hidden>
+      <div class="dashboard-heading"><div><span class="eyebrow">CONTENT MANAGEMENT</span><h1>অ্যাডমিন ড্যাশবোর্ড</h1><p>গল্প তৈরি করুন, প্রকাশ করুন এবং প্রকাশিত গল্প পরিচালনা করুন।</p></div><button id="logoutBtn" class="secondary-button">লগআউট ↗</button></div>
+      <div class="admin-grid">
+        <section class="admin-card editor-card"><h2>✍️ নতুন গল্প প্রকাশ</h2><p class="muted">সব তথ্য পূরণ করে প্রকাশ করুন।</p>
+          <form id="storyForm">
+            <label for="storyTitle">গল্পের নাম *</label><input id="storyTitle" required maxlength="140" placeholder="যেমন: শেষ বিকেলের চিঠি">
+            <div class="form-row"><div><label for="writerName">লেখকের নাম *</label><input id="writerName" required maxlength="80" placeholder="লেখকের নাম"></div><div><label for="storyType">গল্পের ধরন *</label><select id="storyType" required><option value="">ধরন নির্বাচন</option><option>রোমান্টিক</option><option>রহস্য</option><option>ভৌতিক</option><option>অনুপ্রেরণামূলক</option><option>পারিবারিক</option><option>অ্যাডভেঞ্চার</option><option>অন্যান্য</option></select></div></div>
+            <label for="partNumber">পার্ট / পর্ব নম্বর</label><input id="partNumber" maxlength="40" placeholder="যেমন: পর্ব ১ (ঐচ্ছিক)">
+            <label for="storyContent">গল্পের সম্পূর্ণ লেখা *</label><textarea id="storyContent" required rows="12" placeholder="এখানে গল্প লিখুন..." ></textarea>
+            <div class="editor-bottom"><small>দীর্ঘ গল্পে পাঠকের জন্য “আরও পড়ুন” অপশন স্বয়ংক্রিয়ভাবে আসবে।</small><button class="primary-button" type="submit">প্রকাশ করুন ✨</button></div>
+          </form><p id="publishMessage" class="success" role="status"></p>
+        </section>
+        <section class="admin-card"><div class="section-title"><h2>📚 প্রকাশিত গল্প</h2><span id="adminStoryCount" class="feed-count">০টি</span></div><div id="adminStoryList" class="admin-story-list"></div></section>
+        <section class="admin-card password-card"><h2>🔑 পাসওয়ার্ড পরিবর্তন</h2><p class="muted">নতুন পাসওয়ার্ড এই ব্রাউজারে সংরক্ষিত হবে।</p><form id="passwordForm"><label for="oldPassword">বর্তমান পাসওয়ার্ড</label><input id="oldPassword" type="password" required><label for="newPassword">নতুন পাসওয়ার্ড</label><input id="newPassword" type="password" minlength="6" required placeholder="কমপক্ষে ৬ অক্ষর"><label for="confirmPassword">নতুন পাসওয়ার্ড আবার লিখুন</label><input id="confirmPassword" type="password" minlength="6" required><button class="secondary-button" type="submit">পাসওয়ার্ড আপডেট করুন</button><p id="passwordMessage" role="status"></p></form></section>
+      </div>
+      <p class="security-warning">গুরুত্বপূর্ণ: এটি HTML/CSS/JavaScript দিয়ে তৈরি প্রোটোটাইপ। ডেটা একই ব্রাউজারের Local Storage-এ থাকে এবং পাসওয়ার্ড নিরাপদ সার্ভারে যাচাই হয় না। অনলাইনে সবার জন্য প্রকাশ, একাধিক ডিভাইসে ডেটা ভাগাভাগি ও প্রকৃত নিরাপত্তার জন্য backend/database যুক্ত করতে হবে।</p>
+    </section>
+  </main><script src="admin.js"></script>
+</body>
+</html>

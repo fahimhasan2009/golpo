@@ -1,0 +1,16 @@
+(() => {
+  const STORIES_KEY='golpokotha_stories_v1', PASS_KEY='golpokotha_admin_password_v1';
+  const $=s=>document.querySelector(s);
+  const read=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}};
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const bn=n=>new Intl.NumberFormat('bn-BD').format(n);
+  let stories=read(STORIES_KEY,[]), loggedIn=false;
+  function password(){return localStorage.getItem(PASS_KEY)||'213764859';}
+  function showDashboard(){loggedIn=true;$('#loginPanel').hidden=true;$('#dashboard').hidden=false;renderStories();}
+  $('#loginForm').addEventListener('submit',e=>{e.preventDefault();if($('#adminPassword').value===password()){ $('#loginError').textContent=''; showDashboard(); }else{$('#loginError').textContent='পাসওয়ার্ড সঠিক নয়। আবার চেষ্টা করুন।';}});
+  $('#logoutBtn').addEventListener('click',()=>{loggedIn=false;$('#dashboard').hidden=true;$('#loginPanel').hidden=false;$('#adminPassword').value='';});
+  $('#storyForm').addEventListener('submit',e=>{e.preventDefault();const title=$('#storyTitle').value.trim(),writer=$('#writerName').value.trim(),type=$('#storyType').value,part=$('#partNumber').value.trim(),content=$('#storyContent').value.trim();if(!title||!writer||!type||!content)return;stories=read(STORIES_KEY,[]);stories.unshift({id:'story_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),title,writer,type,part,content,createdAt:Date.now(),published:true});localStorage.setItem(STORIES_KEY,JSON.stringify(stories));e.target.reset();$('#publishMessage').textContent='🎉 গল্পটি সফলভাবে প্রকাশিত হয়েছে!';renderStories();setTimeout(()=>$('#publishMessage').textContent='',4000);});
+  function renderStories(){stories=read(STORIES_KEY,[]);$('#adminStoryCount').textContent=`${bn(stories.length)}টি`;$('#adminStoryList').innerHTML=stories.length?stories.map(s=>`<div class="admin-story-item"><div class="info"><strong>${esc(s.title)}</strong><small>${esc(s.writer)} · ${esc(s.type)} ${s.part?'· '+esc(s.part):''}</small></div><button class="danger-button" data-delete-story="${esc(s.id)}">ডিলিট</button></div>`).join(''):'<p class="admin-empty">এখনো কোনো গল্প প্রকাশ করেননি। প্রথম গল্পটি লিখে প্রকাশ করুন।';}
+  $('#adminStoryList').addEventListener('click',e=>{const b=e.target.closest('[data-delete-story]');if(!b)return;if(confirm('এই গল্পটি এবং তার প্রকাশিত পোস্ট মুছে ফেলবেন?')){stories=read(STORIES_KEY,[]).filter(s=>s.id!==b.dataset.deleteStory);localStorage.setItem(STORIES_KEY,JSON.stringify(stories));renderStories();}});
+  $('#passwordForm').addEventListener('submit',e=>{e.preventDefault();const old=$('#oldPassword').value,n=$('#newPassword').value,c=$('#confirmPassword').value,msg=$('#passwordMessage');if(old!==password()){msg.className='error';msg.textContent='বর্তমান পাসওয়ার্ড সঠিক নয়।';return;}if(n.length<6){msg.className='error';msg.textContent='নতুন পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।';return;}if(n!==c){msg.className='error';msg.textContent='নতুন পাসওয়ার্ড দুটি মেলেনি।';return;}localStorage.setItem(PASS_KEY,n);msg.className='success';msg.textContent='পাসওয়ার্ড এই ব্রাউজারে আপডেট হয়েছে।';e.target.reset();});
+})();

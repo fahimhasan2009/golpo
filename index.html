@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6d28d9">
+  <title>গল্পকথা — গল্পের আপন ঠিকানা</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="গল্পকথা হোম">
+      <span class="brand-mark">গ</span><span>গল্প<span class="brand-light">কথা</span><small>গল্পের আপন ঠিকানা</small></span>
+    </a>
+    <div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="গল্প, লেখক বা ধরন খুঁজুন..." aria-label="গল্প খুঁজুন"></div>
+    <a class="admin-link" href="admin.html">⚙ অ্যাডমিন</a>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="side-card welcome">
+        <div class="welcome-icon">📚</div><h2>গল্পের জগতে<br>স্বাগতম!</h2>
+        <p>পড়ুন, অনুভব করুন, আর গল্পের সঙ্গে যুক্ত থাকুন।</p>
+      </div>
+      <div class="side-card side-nav">
+        <button class="nav-item active" data-filter="সব গল্প">🏠 <span>সব গল্প</span></button>
+        <button class="nav-item" data-filter="রোমান্টিক">💗 <span>রোমান্টিক</span></button>
+        <button class="nav-item" data-filter="রহস্য">🕵️ <span>রহস্য</span></button>
+        <button class="nav-item" data-filter="ভৌতিক">🌙 <span>ভৌতিক</span></button>
+        <button class="nav-item" data-filter="অনুপ্রেরণামূলক">✨ <span>অনুপ্রেরণামূলক</span></button>
+        <button class="nav-item" data-filter="অন্যান্য">🪄 <span>অন্যান্য</span></button>
+      </div>
+      <div class="side-card mini-note"><span>💜</span><p><b>তোমার গল্প, তোমার অনুভূতি</b><br>প্রতিটি গল্পের ভেতরেই লুকিয়ে থাকে নতুন এক পৃথিবী।</p></div>
+    </aside>
+    <section class="feed">
+      <section class="hero">
+        <div class="hero-copy"><span class="eyebrow">READ • FEEL • SHARE</span><h1>প্রতিটি গল্পেই<br>একটি <em>নতুন পৃথিবী</em></h1><p>মন ছুঁয়ে যাওয়া গল্প পড়ুন, নিজের মতামত জানান।</p><a href="#storyFeed" class="hero-button">গল্প পড়া শুরু করুন <span>↘</span></a></div>
+        <div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="book">📖</div><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span></div>
+      </section>
+      <div class="feed-heading"><div><span class="eyebrow">THE STORY FEED</span><h2 id="feedTitle">সবার গল্প</h2></div><span class="feed-count" id="storyCount">০টি গল্প</span></div>
+      <div id="storyFeed" class="story-feed"></div>
+      <div id="emptyState" class="empty-state" hidden><div>🪶</div><h3 id="emptyTitle">এখনো কোনো গল্প প্রকাশিত হয়নি</h3><p id="emptyText">অ্যাডমিন গল্প প্রকাশ করলে এখানে দেখা যাবে। আবার পরে ঘুরে আসুন!</p><a href="admin.html" class="empty-admin">অ্যাডমিন প্যানেল</a></div>
+      <footer>© <span id="year"></span> গল্পকথা · গল্প পড়ুন, অনুভূতি ভাগ করুন 💜</footer>
+    </section>
+    <aside class="rightbar">
+      <div class="side-card trend-card"><h3>🌟 গল্পকথা সম্পর্কে</h3><p>এখানে গল্প পড়ুন, লাইক দিন, মতামত লিখুন এবং অন্য পাঠকের সঙ্গে গল্পের অনুভূতি ভাগ করে নিন।</p><div class="trend-stats"><div><b>📖</b><span>গল্পের জগৎ</span></div><div><b>💬</b><span>মতামতের আড্ডা</span></div></div></div>
+      <div class="side-card quote-card"><span>“</span><p>একটি ভালো গল্প অনেক সময় নীরব হৃদয়ের কথাও বলে দেয়।</p><small>— গল্পকথা</small></div>
+    </aside>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
